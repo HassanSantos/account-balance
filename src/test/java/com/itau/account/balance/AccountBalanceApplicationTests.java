@@ -1,4 +1,4 @@
-package com.itau.account_balance;
+package com.itau.account.balance;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
