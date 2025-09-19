@@ -5,6 +5,7 @@ import com.itau.account.balance.application.port.in.ProcessTransactionUseCase;
 import com.itau.account.balance.domain.model.Transaction;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import io.awspring.cloud.sqs.operations.SqsTemplate;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.Message;
@@ -15,17 +16,12 @@ import java.time.LocalDateTime;
 import java.util.TimeZone;
 
 @Component
+@RequiredArgsConstructor
 public class TransactionConsumer {
 
     private static final Logger logger = LoggerFactory.getLogger(TransactionConsumer.class);
     private final ProcessTransactionUseCase processTransactionUseCase;
     private final SqsTemplate sqsTemplate;
-
-    public TransactionConsumer(ProcessTransactionUseCase processTransactionUseCase,
-                               SqsTemplate sqsTemplate) {
-        this.processTransactionUseCase = processTransactionUseCase;
-        this.sqsTemplate = sqsTemplate;
-    }
 
     @SqsListener(value = "${aws.sqs.queue.transactions}")
     public void receiveTransaction(Message<TransactionMessage> message) {
