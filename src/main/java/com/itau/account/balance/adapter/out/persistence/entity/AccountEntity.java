@@ -42,10 +42,6 @@ public class AccountEntity {
     @Column(nullable = false, length = 3)
     private String balanceCurrency;
 
-    @CreationTimestamp
-    private Instant createdAtEntity;
-
-    @UpdateTimestamp
     private Instant updatedAt;
 
     public enum AccountStatus {
