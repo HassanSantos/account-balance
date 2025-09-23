@@ -1,6 +1,7 @@
 package com.itau.account.balance.adapter.in.messaging.dto;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.UUID;
 
 public record TransactionMessage(
@@ -14,18 +15,21 @@ public record TransactionMessage(
             String currency,
             String status,
             Long timestamp
-    ) {}
+    ) {
+    }
 
     public record AccountData(
             UUID id,
             String owner,
-            String createdAt,
+            Instant createdAt,
             String status,
             BalanceData balance
-    ) {}
+    ) {
+    }
 
     public record BalanceData(
             BigDecimal amount,
             String currency
-    ) {}
+    ) {
+    }
 }

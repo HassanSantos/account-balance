@@ -1,36 +1,49 @@
+// src/main/java/com/itau/account/balance/adapter/out/persistence/mapper/AccountMapper.java
 package com.itau.account.balance.adapter.out.persistence.mapper;
 
 import com.itau.account.balance.adapter.out.persistence.entity.AccountEntity;
 import com.itau.account.balance.domain.model.Account;
-import com.itau.account.balance.domain.model.Balance;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-import java.util.List;
-
 @Mapper(componentModel = "spring")
 public interface AccountMapper {
 
-    @Mapping(target = "balanceAmount", source = "balance.amount")
-    @Mapping(target = "balanceCurrency", source = "balance.currency")
+    @Mapping(source = "status", target = "status", qualifiedByName = "domainStatusToEntityStatus")
     AccountEntity toEntity(Account account);
+//
+//    @Mapping(source = "status", target = "status", qualifiedByName = "entityStatusToDomainStatus")
+//    @Mapping(source = "balance", target = "balance")
+//    Account toDomain(AccountEntity accountEntity);
+//
+//    @Mapping(source = "amount", target = "amount")
+//    @Mapping(source = "currency", target = "currency")
+//    BalanceEntity toBalanceEntity(Balance balance);
+//
+//    @Mapping(source = "amount", target = "amount")
+//    @Mapping(source = "currency", target = "currency")
+//    Balance toBalanceDomain(BalanceEntity balanceEntity);
 
-    @Mapping(target = "balance", source = "entity", qualifiedByName = "mapBalance")
-    Account toDomain(AccountEntity entity);
-
-//    List<AccountEntity> toEntities(List<Account> accounts);
-
-    List<Account> toDomains(List<AccountEntity> entities);
-
-    @Named("mapBalance")
-    default Balance mapBalance(AccountEntity entity) {
-        if (entity == null) {
+    @Named("domainStatusToEntityStatus")
+    default AccountEntity.AccountStatus domainStatusToEntityStatus(Account.AccountStatus status) {
+        if (status == null) {
             return null;
         }
-        return Balance.builder()
-                .amount(entity.getBalanceAmount())
-                .currency(entity.getBalanceCurrency())
-                .build();
+        return switch (status) {
+            case ENABLED -> AccountEntity.AccountStatus.ENABLED;
+            case DISABLED -> AccountEntity.AccountStatus.DISABLED;
+        };
     }
+
+//    @Named("entityStatusToDomainStatus")
+//    default Account.AccountStatus entityStatusToDomainStatus(AccountEntity.AccountStatus status) {
+//        if (status == null) {
+//            return null;
+//        }
+//        return switch (status) {
+//            case ENABLED -> Account.AccountStatus.ENABLED;
+//            case DISABLED -> Account.AccountStatus.DISABLED;
+//        };
+//    }
 }

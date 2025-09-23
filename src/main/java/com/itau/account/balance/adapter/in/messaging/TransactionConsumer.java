@@ -1,7 +1,9 @@
 package com.itau.account.balance.adapter.in.messaging;
 
 import com.itau.account.balance.adapter.in.messaging.dto.TransactionMessage;
+import com.itau.account.balance.adapter.in.messaging.mapper.AccountMessageMapper;
 import com.itau.account.balance.application.port.in.ProcessTransactionUseCase;
+import com.itau.account.balance.domain.model.Account;
 import com.itau.account.balance.domain.model.Transaction;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import io.awspring.cloud.sqs.operations.SqsTemplate;
@@ -22,6 +24,7 @@ public class TransactionConsumer {
     private static final Logger logger = LoggerFactory.getLogger(TransactionConsumer.class);
     private final ProcessTransactionUseCase processTransactionUseCase;
     private final SqsTemplate sqsTemplate;
+    private final AccountMessageMapper accountMessageMapper;
 
     @SqsListener(value = "${aws.sqs.queue.transactions}")
     public void receiveTransaction(Message<TransactionMessage> message) {
@@ -30,7 +33,8 @@ public class TransactionConsumer {
             logger.info("Received transaction: {}", payload.transaction().id());
 
             Transaction transaction = convertToDomain(payload);
-            processTransactionUseCase.processTransaction(transaction);
+            Account account = convertAccount(payload);
+            processTransactionUseCase.processTransaction(transaction, account);
 
             logger.info("Successfully processed transaction: {}", payload.transaction().id());
         } catch (Exception e) {
@@ -55,5 +59,11 @@ public class TransactionConsumer {
                 timestamp,
                 message.account().id()
         );
+
+    }
+
+    private Account convertAccount(TransactionMessage message) {
+
+        return accountMessageMapper.toDomain(message.account());
     }
 }
