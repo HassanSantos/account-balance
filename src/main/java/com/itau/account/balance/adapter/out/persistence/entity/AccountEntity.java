@@ -1,14 +1,12 @@
 package com.itau.account.balance.adapter.out.persistence.entity;
 
+import com.itau.account.balance.domain.model.Balance;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -20,6 +18,10 @@ import java.util.UUID;
 @Table(name = "accounts", indexes = {
         @Index(name = "idx_account_owner", columnList = "owner"),
         @Index(name = "idx_account_updated", columnList = "updatedAt")
+})
+@AttributeOverrides({
+        @AttributeOverride(name = "balance.amount", column = @Column(name = "amount")),
+        @AttributeOverride(name = "balance.currency", column = @Column(name = "currency"))
 })
 public class AccountEntity {
 
@@ -36,13 +38,10 @@ public class AccountEntity {
     @Column(nullable = false)
     private AccountStatus status;
 
-    @Column(nullable = false, precision = 15, scale = 2)
-    private BigDecimal balanceAmount;
-
-    @Column(nullable = false, length = 3)
-    private String balanceCurrency;
-
     private Instant updatedAt;
+
+    @Embedded
+    private Balance balance;
 
     public enum AccountStatus {
         ENABLED, DISABLED

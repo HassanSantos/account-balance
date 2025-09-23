@@ -1,4 +1,4 @@
-package com.itau.account.balance.domain.model;
+package com.itau.account.balance.adapter.out.persistence.entity;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
