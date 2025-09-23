@@ -20,8 +20,8 @@ public class TransactionMapper {
         entity.setAmount(transaction.getAmount());
         entity.setCurrency(transaction.getCurrency());
         entity.setStatus(transaction.getStatus());
-        entity.setTimestamp(transaction.getTimestamp());
-        entity.setAccountId(convertToUUID(transaction.getAccountId()));
+        entity.setCreatedAt(transaction.getTimestamp());
+        entity.setAccountId(transaction.getAccountId());
 
         return entity;
     }
@@ -37,7 +37,7 @@ public class TransactionMapper {
                 .amount(entity.getAmount())
                 .currency(entity.getCurrency())
                 .status(entity.getStatus())
-                .timestamp(entity.getTimestamp())
+                .timestamp(entity.getCreatedAt())
                 .accountId(entity.getAccountId().toString())
                 .build();
     }
