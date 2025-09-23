@@ -4,7 +4,6 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -20,5 +19,4 @@ public class Transaction {
     private String currency;
     private String status;
     private LocalDateTime timestamp;
-    private UUID accountId;
 }

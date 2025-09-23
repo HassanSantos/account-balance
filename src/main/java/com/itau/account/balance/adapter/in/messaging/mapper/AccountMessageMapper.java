@@ -14,7 +14,7 @@ public interface AccountMessageMapper {
 
     @Mapping(source = "status", target = "status", qualifiedByName = "stringToAccountStatus")
     @Mapping(source = "balance", target = "balance")
-    Account toDomain(AccountData accountData);
+    Account toAccount(AccountData accountData);
 
     @Mapping(source = "amount", target = "amount")
     @Mapping(source = "currency", target = "currency")

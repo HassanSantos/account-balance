@@ -27,10 +27,10 @@ public class TransactionService implements ProcessTransactionUseCase {
     public void processTransaction(Transaction transaction, Account account) {
 
         try {
-            var accountEntity = accountMapper.toEntity(account);
-            accountEntity.setCreatedAt(Instant.now());
-            accountRepository.save(accountEntity);
-            transactionRepository.save(transactionMapper.toEntity(transaction));
+//            var accountEntity = accountMapper.toEntity(account);
+//            accountEntity.setCreatedAt(Instant.now());
+//            accountRepository.save(accountEntity);
+            transactionRepository.save(transactionMapper.toEntity(transaction, account));
         } catch (Exception e) {
             log.error("ERROR TO SAVE");
             log.error(e.getMessage(), e);

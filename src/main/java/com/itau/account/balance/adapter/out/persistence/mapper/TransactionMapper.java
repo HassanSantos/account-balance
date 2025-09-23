@@ -1,56 +1,20 @@
 package com.itau.account.balance.adapter.out.persistence.mapper;
 
+import com.itau.account.balance.adapter.out.persistence.entity.AccountEntity;
 import com.itau.account.balance.adapter.out.persistence.entity.TransactionEntity;
+import com.itau.account.balance.domain.model.Account;
 import com.itau.account.balance.domain.model.Transaction;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import java.util.UUID;
+@Mapper(componentModel = "spring")
+public interface TransactionMapper {
 
-@Component
-public class TransactionMapper {
+    @Mapping(source = "timestamp", target = "createdAt")
+    @Mapping(target = "account", ignore = true) // Você precisará tratar essa conversão separadamente
+    TransactionEntity toEntity(Transaction transaction, Account account);
 
-    public TransactionEntity toEntity(Transaction transaction) {
-        if (transaction == null) {
-            return null;
-        }
-
-        TransactionEntity entity = new TransactionEntity();
-        entity.setId(convertToUUID(transaction.getId()));
-        entity.setType(transaction.getType());
-        entity.setAmount(transaction.getAmount());
-        entity.setCurrency(transaction.getCurrency());
-        entity.setStatus(transaction.getStatus());
-        entity.setCreatedAt(transaction.getTimestamp());
-        entity.setAccountId(transaction.getAccountId());
-
-        return entity;
-    }
-
-    public Transaction toDomain(TransactionEntity entity) {
-        if (entity == null) {
-            return null;
-        }
-
-        return Transaction.builder()
-                .id(entity.getId().toString())
-                .type(entity.getType())
-                .amount(entity.getAmount())
-                .currency(entity.getCurrency())
-                .status(entity.getStatus())
-                .timestamp(entity.getCreatedAt())
-                .accountId(entity.getAccountId())
-                .build();
-    }
-
-    private UUID convertToUUID(String id) {
-        if (id == null) {
-            return null;
-        }
-        try {
-            return UUID.fromString(id);
-        } catch (IllegalArgumentException e) {
-//            TODO: MELHORAR ISSO AQUI
-           return UUID.randomUUID();
-        }
-    }
+    // Adicione também o método inverso se necessário
+    @Mapping(source = "createdAt", target = "timestamp")
+    Transaction toDomain(TransactionEntity entity);
 }
