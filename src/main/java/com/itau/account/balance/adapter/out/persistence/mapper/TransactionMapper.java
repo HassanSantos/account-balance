@@ -38,7 +38,7 @@ public class TransactionMapper {
                 .currency(entity.getCurrency())
                 .status(entity.getStatus())
                 .timestamp(entity.getCreatedAt())
-                .accountId(entity.getAccountId().toString())
+                .accountId(entity.getAccountId())
                 .build();
     }
 

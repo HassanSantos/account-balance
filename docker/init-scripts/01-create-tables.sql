@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS accounts (
 -- Create transactions table (se necessário para futuras funcionalidades)
 CREATE TABLE IF NOT EXISTS transactions (
                                             id VARCHAR(36) PRIMARY KEY,
-    account_id VARCHAR(36) NOT NULL,
+    account_id uuid NOT NULL,
     type VARCHAR(10) NOT NULL CHECK (type IN ('CREDIT', 'DEBIT')),
     amount NUMERIC(15,2) NOT NULL,
     currency VARCHAR(3) NOT NULL DEFAULT 'BRL',

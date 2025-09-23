@@ -2,16 +2,15 @@ package com.itau.account.balance.adapter.out.persistence.repository;
 
 import com.itau.account.balance.adapter.out.persistence.entity.AccountEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface AccountRepository extends JpaRepository<AccountEntity, String> {
+public interface AccountRepository extends JpaRepository<AccountEntity, UUID> {
 
 //    @Query("SELECT a FROM AccountEntity a WHERE a.id = :accountId")
 //    Optional<AccountEntity> findByAccountId(String accountId);
 
-    boolean existsById(String accountId);
+//    boolean existsById(String accountId);
 }

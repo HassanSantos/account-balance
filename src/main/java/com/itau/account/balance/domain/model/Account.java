@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Account {
-    private String id;
+    private UUID id;
     private String owner;
     private Instant createdAt;
     private AccountStatus status;

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -26,7 +27,7 @@ public class AccountPersistenceAdapter implements LoadAccountPort {
 
     @Override
     public boolean existsById(String accountId) {
-        return accountRepository.existsById(accountId);
+        return accountRepository.existsById(UUID.randomUUID());
     }
 
 //    @Override

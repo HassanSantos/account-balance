@@ -31,13 +31,13 @@ public class TransactionEntity {
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
-    private String accountId;
+    private UUID accountId;
 
     public TransactionEntity() {
     }
 
     public TransactionEntity(UUID id, String type, BigDecimal amount, String currency,
-                             String status, LocalDateTime createdAt, String accountId) {
+                             String status, LocalDateTime createdAt, UUID accountId) {
         this.id = id;
         this.type = type;
         this.amount = amount;
@@ -96,11 +96,11 @@ public class TransactionEntity {
         this.createdAt = createdAt;
     }
 
-    public String getAccountId() {
+    public UUID getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
+    public void setAccountId(UUID accountId) {
         this.accountId = accountId;
     }
 }

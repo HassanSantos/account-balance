@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -23,7 +24,7 @@ import java.time.Instant;
 public class AccountEntity {
 
     @Id
-    private String id;
+    private UUID id;
 
     @Column(nullable = false)
     private String owner;

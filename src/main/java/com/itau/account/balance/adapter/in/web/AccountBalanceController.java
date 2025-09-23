@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.UUID;
+
 @Slf4j
 @Controller
 @RequestMapping("/api/v1/accounts")
@@ -54,7 +56,7 @@ public class AccountBalanceController {
     }
 
     public record AccountBalanceResponse(
-            String id,
+            UUID id,
             String owner,
             Balance balance,
             java.time.Instant updatedAt
@@ -64,12 +66,12 @@ public class AccountBalanceController {
         }
 
         public static class AccountBalanceResponseBuilder {
-            private String id;
+            private UUID id;
             private String owner;
             private Balance balance;
             private java.time.Instant updatedAt;
 
-            public AccountBalanceResponseBuilder id(String id) {
+            public AccountBalanceResponseBuilder id(UUID id) {
                 this.id = id;
                 return this;
             }
