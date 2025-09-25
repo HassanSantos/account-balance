@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -17,32 +14,30 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "accounts", indexes = {
+@Table(name = "account", schema = "transaction_schema", indexes = {
         @Index(name = "idx_account_owner", columnList = "owner"),
         @Index(name = "idx_account_updated", columnList = "updatedAt")
 })
+@AttributeOverride(name = "balance.amount", column = @Column(name = "amount"))
+@AttributeOverride(name = "balance.currency", column = @Column(name = "currency"))
 public class AccountEntity {
 
     @Id
     private UUID id;
 
     @Column(nullable = false)
-    private String owner;
+    private UUID owner;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Instant createdAt;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AccountStatus status;
 
-    @Column(nullable = false, precision = 15, scale = 2)
-    private BigDecimal balanceAmount;
-
-    @Column(nullable = false, length = 3)
-    private String balanceCurrency;
-
-    private Instant updatedAt;
+    @Embedded
+    private Balance balance;
 
     public enum AccountStatus {
         ENABLED, DISABLED

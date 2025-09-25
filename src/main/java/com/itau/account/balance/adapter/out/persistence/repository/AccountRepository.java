@@ -8,9 +8,4 @@ import java.util.UUID;
 
 @Repository
 public interface AccountRepository extends JpaRepository<AccountEntity, UUID> {
-
-//    @Query("SELECT a FROM AccountEntity a WHERE a.id = :accountId")
-//    Optional<AccountEntity> findByAccountId(String accountId);
-
-//    boolean existsById(String accountId);
 }

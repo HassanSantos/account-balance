@@ -1,8 +1,8 @@
 package com.itau.account.balance.adapter.in.web;
 
-import com.itau.account.balance.application.service.AccountService;
+import com.itau.account.balance.adapter.in.web.model.AccountBalanceResponse;
+import com.itau.account.balance.application.port.in.GetAccountBalanceUseCase;
 import com.itau.account.balance.domain.model.Account;
-import com.itau.account.balance.domain.model.Balance;
 import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,21 +12,19 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.UUID;
-
+import org.springframework.web.bind.annotation.RestController;
+//TODO: ADICIONAR SWAGGER CODE GENERATE
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/api/v1/accounts")
 @RequiredArgsConstructor
 @Tag(name = "Account Balance", description = "Account Balance Management API")
 public class AccountBalanceController {
 
-    private final AccountService accountService;
+    private final GetAccountBalanceUseCase getAccountBalanceUseCase;
 
     @GetMapping("/{accountId}/balance")
     @Timed(value = "account.balance.get", description = "Time taken to get account balance")
@@ -42,58 +40,16 @@ public class AccountBalanceController {
 
         log.info("Received request for account balance: {}", accountId);
 
-        Account account = accountService.getAccountBalance(accountId);
+        Account account = getAccountBalanceUseCase.getAccountBalance(accountId);
 
-        AccountBalanceResponse response = AccountBalanceResponse.builder()
-                .id(account.getId())
-                .owner(account.getOwner())
-                .balance(account.getBalance())
-                .updatedAt(account.getUpdatedAt())
-                .build();
+        AccountBalanceResponse response = new AccountBalanceResponse(
+                account.getId(),
+                account.getOwner(),
+                account.getBalance(),
+                account.getUpdatedAt()
+        );
 
         log.debug("Returning account balance for: {}", accountId);
         return ResponseEntity.ok(response);
-    }
-
-    public record AccountBalanceResponse(
-            UUID id,
-            String owner,
-            Balance balance,
-            java.time.Instant updatedAt
-    ) {
-        public static AccountBalanceResponseBuilder builder() {
-            return new AccountBalanceResponseBuilder();
-        }
-
-        public static class AccountBalanceResponseBuilder {
-            private UUID id;
-            private String owner;
-            private Balance balance;
-            private java.time.Instant updatedAt;
-
-            public AccountBalanceResponseBuilder id(UUID id) {
-                this.id = id;
-                return this;
-            }
-
-            public AccountBalanceResponseBuilder owner(String owner) {
-                this.owner = owner;
-                return this;
-            }
-
-            public AccountBalanceResponseBuilder balance(Balance balance) {
-                this.balance = balance;
-                return this;
-            }
-
-            public AccountBalanceResponseBuilder updatedAt(java.time.Instant updatedAt) {
-                this.updatedAt = updatedAt;
-                return this;
-            }
-
-            public AccountBalanceResponse build() {
-                return new AccountBalanceResponse(id, owner, balance, updatedAt);
-            }
-        }
     }
 }

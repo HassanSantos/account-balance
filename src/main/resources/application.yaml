@@ -2,9 +2,9 @@ spring:
   application:
     name: account-balance
   datasource:
-    url: jdbc:postgresql://localhost:5432/mydatabase
-    username: myuser
-    password: mypassword
+    url: jdbc:postgresql://localhost:5432/transaction_db
+    username: postgres
+    password: password
     hikari:
       maximum-pool-size: 20
       minimum-idle: 5

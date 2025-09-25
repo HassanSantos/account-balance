@@ -12,6 +12,8 @@ public interface AccountMapper {
 
     @Mapping(source = "status", target = "status", qualifiedByName = "domainStatusToEntityStatus")
     AccountEntity toEntity(Account account);
+
+    Account toAccount(AccountEntity account);
 //
 //    @Mapping(source = "status", target = "status", qualifiedByName = "entityStatusToDomainStatus")
 //    @Mapping(source = "balance", target = "balance")
