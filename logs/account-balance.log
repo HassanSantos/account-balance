@@ -1823,3 +1823,45 @@ org.springframework.web.servlet.resource.NoResourceFoundException: No static res
 2025-09-25 12:01:56.218 [http-nio-8080-exec-5] INFO  c.i.a.b.a.i.w.AccountBalanceController - Received request for account balance: 93270a7e-d122-4d7a-8871-261cff7f762d
 2025-09-25 12:01:58.100 [http-nio-8080-exec-5] DEBUG c.i.a.b.a.service.AccountService - Fetching balance for account: 93270a7e-d122-4d7a-8871-261cff7f762d
 2025-09-25 12:01:59.619 [http-nio-8080-exec-5] DEBUG c.i.a.b.a.i.w.AccountBalanceController - Returning account balance for: 93270a7e-d122-4d7a-8871-261cff7f762d
+2025-09-25 12:05:22.734 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-09-25 12:05:22.750 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-09-25 12:05:24.807 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-25 12:05:24.810 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-09-25 12:05:24.813 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-09-25 12:05:28.734 [main] INFO  c.i.a.b.AccountBalanceApplication - Starting AccountBalanceApplication using Java 21.0.8 with PID 70051 (/home/hassan/dev-git/account-balance/target/classes started by hassan in /home/hassan/dev-git/account-balance)
+2025-09-25 12:05:28.737 [main] DEBUG c.i.a.b.AccountBalanceApplication - Running with Spring Boot v3.5.6, Spring v6.2.7
+2025-09-25 12:05:28.738 [main] INFO  c.i.a.b.AccountBalanceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-09-25 12:05:30.759 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-25 12:05:30.854 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 83 ms. Found 2 JPA repository interfaces.
+2025-09-25 12:05:32.054 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-09-25 12:05:32.074 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-25 12:05:32.075 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-09-25 12:05:32.142 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-09-25 12:05:32.142 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3309 ms
+2025-09-25 12:05:32.814 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-25 12:05:32.876 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-09-25 12:05:32.920 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-25 12:05:33.274 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-25 12:05:33.325 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-25 12:05:33.698 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2b9615cb
+2025-09-25 12:05:33.704 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-25 12:05:33.784 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-25 12:05:33.870 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-25 12:05:35.888 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-25 12:05:36.014 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-25 12:05:37.511 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-25 12:05:42.181 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
+2025-09-25 12:05:42.366 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-09-25 12:05:42.391 [main] INFO  c.i.a.b.AccountBalanceApplication - Started AccountBalanceApplication in 14.768 seconds (process running for 16.142)
+2025-09-25 12:05:43.251 [RMI TCP Connection(5)-192.168.100.19] DEBUG c.i.a.b.config.HealthCheckConfig - Liveness health check executed
+2025-09-25 12:05:43.251 [RMI TCP Connection(5)-192.168.100.19] DEBUG c.i.a.b.config.HealthCheckConfig - Readiness health check executed
+2025-09-25 12:05:43.303 [RMI TCP Connection(6)-192.168.100.19] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-25 12:05:43.304 [RMI TCP Connection(6)-192.168.100.19] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-25 12:05:43.322 [RMI TCP Connection(6)-192.168.100.19] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 15 ms

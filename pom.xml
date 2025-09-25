@@ -177,36 +177,6 @@
 				</configuration>
 			</plugin>
 
-<!--			&lt;!&ndash; Mutation Testing &ndash;&gt;-->
-<!--			<plugin>-->
-<!--				<groupId>org.pitest</groupId>-->
-<!--				<artifactId>pitest-maven</artifactId>-->
-<!--				<version>${pitest.version}</version>-->
-<!--				<configuration>-->
-<!--					<targetClasses>-->
-<!--						<param>com.itau.account.balance.application.service.*</param>-->
-<!--						<param>com.itau.account.balance.adapter.in.*</param>-->
-<!--					</targetClasses>-->
-<!--					<targetTests>-->
-<!--						<param>com.itau.account.balance.*Test</param>-->
-<!--					</targetTests>-->
-<!--					<mutationThreshold>85</mutationThreshold>-->
-<!--					<threads>4</threads>-->
-<!--					<outputFormats>-->
-<!--						<outputFormat>HTML</outputFormat>-->
-<!--						<outputFormat>XML</outputFormat>-->
-<!--					</outputFormats>-->
-<!--				</configuration>-->
-<!--				<dependencies>-->
-<!--					<dependency>-->
-<!--						<groupId>org.pitest</groupId>-->
-<!--						<artifactId>pitest-junit5-plugin</artifactId>-->
-<!--						<version>${pitest-junit5.version}</version>-->
-<!--					</dependency>-->
-<!--				</dependencies>-->
-<!--			</plugin>-->
-
-			<!-- JaCoCo for Code Coverage -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>

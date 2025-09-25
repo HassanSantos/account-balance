@@ -67,10 +67,10 @@ management:
       probes:
         enabled: true
       show-details: always
-    metrics:
-      enabled: true
-    prometheus:
-      enabled: true
+#    metrics:
+#      enabled: true
+#    prometheus:
+#      enabled: true
   health:
     livenessstate:
       enabled: true
@@ -96,15 +96,6 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         waitDurationInOpenState: 10s
         failureRateThreshold: 50
-
-# Custom properties
-app:
-  sqs:
-    queue-url: ${SQS_QUEUE_URL:http://localhost:4566/000000000000/transacoes-financeiras-processadas}
-  batch:
-    size: 1000
-
-
 
 aws:
   sqs:
