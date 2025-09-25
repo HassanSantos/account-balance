@@ -11,6 +11,7 @@ import org.mapstruct.Named;
 public interface AccountMapper {
 
     @Mapping(source = "status", target = "status", qualifiedByName = "domainStatusToEntityStatus")
+    @Mapping(source = "balance", target = "balance")
     AccountEntity toEntity(Account account);
 
     Account toAccount(AccountEntity account);
